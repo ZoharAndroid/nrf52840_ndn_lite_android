@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--蓝牙开启检测-->
+    <include layout="@layout/info_bluetooth_disable" />
+
+    <!--progress bar 显示正在加载匹配节点-->
+    <include layout="@layout/info_loading_progress" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle_show_node_device"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:visibility="gone"
+            layout="@layout/item_board_node_board1" />
+
+        <include
+            android:visibility="gone"
+            layout="@layout/item_board_node_board2" />
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
