@@ -11,6 +11,29 @@
     <!--progress bar 显示正在加载匹配节点-->
     <include layout="@layout/info_loading_progress" />
 
+    <LinearLayout
+        android:id="@+id/ll_click_qr_note_container"
+        android:layout_marginTop="10dip"
+        android:layout_marginRight="25dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_gravity="right"
+            android:src="@mipmap/icon_arrow"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:textColor="@color/colortext"
+            android:textSize="16sp"
+            android:text="@string/note_click_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle_show_node_device"

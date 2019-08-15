@@ -12,7 +12,7 @@
     <item android:id="@+id/toolbar_refresh"
         android:title="@string/refresh"
         android:icon="@mipmap/ic_refresh"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
     <item android:id="@+id/create_qr_toolbar"
         android:title="生成二维码"

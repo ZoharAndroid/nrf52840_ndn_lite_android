@@ -155,5 +155,5 @@
  <string name="led_switch">LED Switch</string>
  <string name="only_the_contoller">Only the controller</string>
  <string name="any_device">Any node</string>
-
+ <string name="note_click_scan">Please click scan QR to add node!</string>
 </resources>
