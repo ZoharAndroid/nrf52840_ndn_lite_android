@@ -87,6 +87,7 @@ public class DeviceFragment extends Fragment {
 
     private ConstraintLayout mBoard1ContainerLayout;
     private ConstraintLayout mBoard2ContainerLayout;
+    private LinearLayout mClickQRNoteView;
 
     // 蓝牙状态的监听
     private BluetoothListenerRecevier mBluetoothRecevier;
@@ -549,6 +550,7 @@ public class DeviceFragment extends Fragment {
         mRecycleNode.setAdapter(boardAdapter);
         mBoard1ContainerLayout = view.findViewById(R.id.board1_container);
         mBoard2ContainerLayout = view.findViewById(R.id.board2_container);
+        mClickQRNoteView = view.findViewById(R.id.ll_click_qr_note_container);
     }
 
     /**
@@ -694,6 +696,8 @@ public class DeviceFragment extends Fragment {
                 break;
             case Constant.REQUSET_QR: // 扫描二维码
                 if (resultCode == getActivity().RESULT_OK) {
+                    // 隐藏指示用户点击的注释信息
+                    mClickQRNoteView.setVisibility(View.GONE);
                     Log.i(TAG, "相加开启成功！");
                     String qrResult = data.getStringExtra(Constant.QR_RESULT);
                     Log.i(TAG, qrResult);
