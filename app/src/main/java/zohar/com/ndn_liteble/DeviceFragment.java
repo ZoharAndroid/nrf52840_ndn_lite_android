@@ -417,7 +417,7 @@ public class DeviceFragment extends Fragment {
                             SendInterestTaskV3 SITask2 = new SendInterestTaskV3();
                             SITask2.execute(commandInterest2);
                         }
-                        Toast.makeText(getContext(), "All device", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "All node", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                 }
@@ -471,7 +471,7 @@ public class DeviceFragment extends Fragment {
                                     SendInterestTaskV3 SITask2 = new SendInterestTaskV3();
                                     SITask2.execute(commandInterest2);
                                 }
-                                Toast.makeText(getContext(), "All device", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "All node", Toast.LENGTH_SHORT).show();
                                 break;
                             default:
                         }

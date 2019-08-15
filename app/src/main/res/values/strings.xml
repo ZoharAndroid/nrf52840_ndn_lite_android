@@ -156,4 +156,5 @@
  <string name="only_the_contoller">Only the controller</string>
  <string name="any_device">Any node</string>
  <string name="note_click_scan">Please click and scan QR code to add node!</string>
+ <string name="trust_policy">trust policy：</string>
 </resources>
