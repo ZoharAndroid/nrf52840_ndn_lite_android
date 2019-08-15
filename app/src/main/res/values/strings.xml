@@ -154,6 +154,6 @@
  <string name="board_name">/NDN-IoT/Board</string>
  <string name="led_switch">LED Switch</string>
  <string name="only_the_contoller">Only the controller</string>
- <string name="any_device">Any device</string>
+ <string name="any_device">Any node</string>
 
 </resources>
