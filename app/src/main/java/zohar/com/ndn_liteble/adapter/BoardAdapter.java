@@ -3,11 +3,13 @@ package zohar.com.ndn_liteble.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
@@ -26,8 +28,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
     // 填充的数据
     private List<Board> boards;
 
-    // 点击图片的监听事件
-    private OnClickBoardImageListener clickBoardImageListener;
     // 点击switch的监听事件
     private OnClickSwitchListener onClickSwitchListener;
     // 点击radiogroup
@@ -53,17 +53,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
         this.onCheckedChangeListener = onCheckedChangeListener;
     }
 
-    /**
-     *
-     * interface ： 图片点击监听事件
-     */
-    public interface OnClickBoardImageListener{
-         void onClickBoardImageListener(View view, Board board);
-    }
-
-    public void setOnClickBoardImageListener(OnClickBoardImageListener clickBoardImageListener){
-        this.clickBoardImageListener = clickBoardImageListener;
-    }
 
     public BoardAdapter(List<Board> boards) {
         this.boards = boards;
@@ -73,25 +62,33 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView macAddress;
         TextView identifier;
-        TextView kbpub;
-        Switch ledSwitch;
+        LinearLayout ledContainer;
         ImageView ivBoard;
+        Switch ledSwitch;
         RadioGroup radioGroup;
         ImageView onLineImageView;
         RadioButton anyRadioButton;
         TextView boardId;
+        ImageView offLineImageView;
+        LinearLayout llBoardInfoView;
+        TextView boardidShowView;
+        TextView trustView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             macAddress = itemView.findViewById(R.id.tv_mac_address);
             identifier = itemView.findViewById(R.id.tv_identifier);
-            kbpub = itemView.findViewById(R.id.tv_kdpub);
-            ledSwitch = itemView.findViewById(R.id.switch_led);
+            ledContainer = itemView.findViewById(R.id.ll_led_switch_container);
             ivBoard = itemView.findViewById(R.id.iv_board);
             radioGroup = itemView.findViewById(R.id.rg_policy_select);
             onLineImageView = itemView.findViewById(R.id.board_on_line_image_view);
             anyRadioButton = itemView.findViewById(R.id.rb_all_node);
             boardId = itemView.findViewById(R.id.tv_board_ndn_name_id);
+            offLineImageView = itemView.findViewById(R.id.board_off_line_image_view);
+            llBoardInfoView = itemView.findViewById(R.id.ll_board_info_container);
+            boardidShowView = itemView.findViewById(R.id.board_id);
+            ledSwitch = itemView.findViewById(R.id.switch_led);
+            trustView = itemView.findViewById(R.id.tv_truest_policy_note);
         }
     }
 
@@ -113,19 +110,6 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
             }
         });
 
-        // 对图片进行
-        holder.ivBoard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                // 获取当前点击的实例
-                int position = holder.getAdapterPosition();
-                Board board = boards.get(position);
-
-                clickBoardImageListener.onClickBoardImageListener(v, board);
-
-            }
-        });
-
         holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -143,13 +127,24 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder viewHoder, int i) {
         Board board = boards.get(i);
         if (board != null) {
-            viewHoder.macAddress.setText(board.getMacAddress());
-            viewHoder.identifier.setText(board.getIdentifierHex());
-            //viewHoder.kbpub.setText(board.getKDPubCertificate());
-            if (board.getIdentifierHex().equals(Constant.BOARD1_ID)){
-                viewHoder.boardId.setText("/NDN-IoT/Board1");
+            if (board.isOnLine()) {
+                // on line
+                showOnLineView(viewHoder);
+                Log.i("DeviceFragment", board.getMacAddress() + "  =============");
+                viewHoder.macAddress.setText(board.getMacAddress());
+                viewHoder.identifier.setText(board.getIdentifierHex());
+                if (board.getIdentifierHex().equals(Constant.BOARD1_ID)) {
+                    viewHoder.boardId.setText("/NDN-IoT/Board1");
+                } else {
+                    viewHoder.boardId.setText("/NDN-IoT/Board2");
+                }
             }else{
-                viewHoder.boardId.setText("/NDN-IoT/Board2");
+                // off line
+                if (board.getIdentifierHex().equals(Constant.BOARD1_ID)){
+                    viewHoder.boardidShowView.setText("Board1");
+                }else{
+                    viewHoder.boardidShowView.setText("Board2");
+                }
             }
 
         }
@@ -160,6 +155,17 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
         return boards.size();
     }
 
+
+
+    private void  showOnLineView(ViewHolder view){
+        view.onLineImageView.setVisibility(View.VISIBLE);
+        view.offLineImageView.setVisibility(View.GONE);
+        view.radioGroup.setVisibility(View.VISIBLE);
+        view.ledSwitch.setVisibility(View.VISIBLE);
+        view.llBoardInfoView.setVisibility(View.VISIBLE);
+        view.ledContainer.setVisibility(View.VISIBLE);
+        view.trustView.setVisibility(View.VISIBLE);
+    }
 
 
 
