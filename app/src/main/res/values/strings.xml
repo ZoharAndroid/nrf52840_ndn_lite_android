@@ -157,4 +157,7 @@
  <string name="any_device">Any node</string>
  <string name="note_click_scan">Please click and scan QR code to add node!</string>
  <string name="trust_policy">trust policy：</string>
+ <string name="bluetooth_dont_open">Bluetooth is not open!</string>
+ <string name="open_bluetooth">Please to open bluetooth!</string>
+ <string name="open">Open</string>
 </resources>

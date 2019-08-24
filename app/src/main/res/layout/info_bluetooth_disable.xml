@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dip"
-        android:text="蓝牙未开启"
+        android:text="@string/bluetooth_dont_open"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,13 +43,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="蓝牙已被关闭！点击下面的按钮去开启蓝牙!"
+        android:text="@string/open_bluetooth"
         android:textColor="@color/colortextdark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_disable" />
 
     <Button
+        android:visibility="gone"
         android:textColor="@color/colortext"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/tv_bluetooth_disable_note"
@@ -57,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dip"
-        android:text="开启"
+        android:text="@string/open"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
